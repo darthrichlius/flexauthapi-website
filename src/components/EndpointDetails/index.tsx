@@ -36,7 +36,7 @@ const EndpointDetails = ({
   errors,
 }: EndpointDetailsProps) => (
   <div className={styles.endpointDetails}>
-    <h2>{title}</h2>
+    <h4>{title}</h4>
     {description && <p>{description}</p>}
 
     <DetailsTable

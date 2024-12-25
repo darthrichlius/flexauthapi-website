@@ -13,9 +13,44 @@ This document is meant to provide clear and comprehensive information and detail
 ### User Management
 
 <EndpointDetails
-  title="Get User Details"
-  description="Retrieve detailed information about a user based on their ID."
-  endpoint="/users/{id}"
+  title="GET /users - Get the current user data"
+  description="Get the current user information. "
+  endpoint="/users/me"
+  protected={true}
+  parameters={[
+    {
+      name: "id",
+      isRequired: true,
+      type: "string",
+      description: "lorem ipsum",
+    },
+    {
+      name: "name",
+      isRequired: false,
+      type: "string",
+      description: "lorem ipsum",
+    },
+  ]}
+  successResponseCode={200}
+  successResponseBody={{
+    id: "123",
+    name: "John Doe",
+    email: "john.doe@example.com",
+  }}
+  errors={[
+    {
+      name: "400 Bad Request",
+    },
+    {
+      name: "401 Unauthorized",
+      description: "Bad credentials",
+    },
+  ]}
+/>
+
+<EndpointDetails
+  title="GET /users - Get user list"
+  endpoint="/users"
   protected={true}
   parameters={[
     {
