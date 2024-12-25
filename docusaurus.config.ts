@@ -63,7 +63,7 @@ const config: Config = {
           label: "Tutorial",
         },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/darthrichlius/flexauthapi",
           label: "GitHub",
           position: "right",
         },
