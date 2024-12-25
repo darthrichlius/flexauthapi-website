@@ -1,0 +1,8 @@
+.endpointDetailsError {
+  display: flex;
+  gap: calc(8px / 2);
+  margin-bottom: 8px !important;
+}
+.endpointDetailsErrorName {
+  padding: 0px 4px;
+}

@@ -17,7 +17,20 @@ This document is meant to provide clear and comprehensive information and detail
   description="Retrieve detailed information about a user based on their ID."
   endpoint="/users/{id}"
   protected={true}
-  parameters={[{ key: "id", value: "User ID (string)" }]}
+  parameters={[
+    {
+      name: "id",
+      isRequired: true,
+      type: "string",
+      description: "lorem ipsum",
+    },
+    {
+      name: "name",
+      isRequired: false,
+      type: "string",
+      description: "lorem ipsum",
+    },
+  ]}
   successResponseCode={200}
   successResponseBody={{
     id: "123",
@@ -25,7 +38,12 @@ This document is meant to provide clear and comprehensive information and detail
     email: "john.doe@example.com",
   }}
   errors={[
-    { key: "400", value: "Invalid ID" },
-    { key: "404", value: "User not found" },
+    {
+      name: "400 Bad Request",
+    },
+    {
+      name: "401 Unauthorized",
+      description: "Bad credentials",
+    },
   ]}
 />

@@ -1,0 +1,8 @@
+.endpointDetailsParameter {
+  display: flex;
+  gap: calc(8px / 2);
+  margin-bottom: 8px !important;
+}
+.endpointDetailsParameterName {
+  padding: 0px 4px;
+}

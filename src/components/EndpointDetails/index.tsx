@@ -1,17 +1,28 @@
 // src/components/EndpointDetails.tsx
 import React from "react";
-import DetailsTable, { TableRow } from "./EndpointDetailsTable";
+import DetailsTable from "./EndpointDetailsTable";
 import styles from "./styles.module.css";
+import EndpointDetailsParameterTable from "./EndpointDetailsParameterTable";
+import EndpointDetailsErrorTable from "./EndpointDetailsErrorTable";
+
+export interface EndpointParameterProps {
+  name: string;
+  isRequired: boolean;
+  type: string;
+  description: string;
+}
+
+export interface EndpointErrorProps {}
 
 interface EndpointDetailsProps {
   title: string;
   description?: string;
   endpoint: string;
   protected: boolean;
-  parameters?: TableRow[];
+  parameters?: EndpointParameterProps[];
   successResponseCode: number;
   successResponseBody: Record<string, any>;
-  errors?: TableRow[];
+  errors?: EndpointErrorProps[];
 }
 
 const EndpointDetails = ({
@@ -34,7 +45,11 @@ const EndpointDetails = ({
         { key: "Protected", value: isProtected ? "Yes" : "No" },
         {
           key: "Parameters",
-          value: parameters ? <DetailsTable rows={parameters} /> : "None",
+          value: parameters ? (
+            <EndpointDetailsParameterTable rows={parameters} />
+          ) : (
+            "None"
+          ),
         },
         { key: "Success - Response Code", value: successResponseCode },
         {
@@ -43,7 +58,7 @@ const EndpointDetails = ({
         },
         {
           key: "Errors",
-          value: errors ? <DetailsTable rows={errors} /> : "None",
+          value: errors ? <EndpointDetailsErrorTable rows={errors} /> : "None",
         },
       ]}
     />
