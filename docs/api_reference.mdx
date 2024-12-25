@@ -1,0 +1,31 @@
+---
+sidebar_position: 1
+---
+
+import EndpointDetails from "@site/src/components/EndpointDetails";
+
+# API Reference
+
+This document is meant to provide clear and comprehensive information and details about the API, especially each endpoint. If you are looking for a document to guide you through its usage, refer to the guide document.
+
+## Endpoint Details
+
+### User Management
+
+<EndpointDetails
+  title="Get User Details"
+  description="Retrieve detailed information about a user based on their ID."
+  endpoint="/users/{id}"
+  protected={true}
+  parameters={[{ key: "id", value: "User ID (string)" }]}
+  successResponseCode={200}
+  successResponseBody={{
+    id: "123",
+    name: "John Doe",
+    email: "john.doe@example.com",
+  }}
+  errors={[
+    { key: "400", value: "Invalid ID" },
+    { key: "404", value: "User not found" },
+  ]}
+/>
