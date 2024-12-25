@@ -55,11 +55,19 @@ const config: Config = {
     navbar: {
       title: "FlexAuthAPI",
       items: [
+        /*
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "Documentation",
+          label: "Features",
+        },
+        */
+        {
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "Docs",
         },
         {
           href: "https://github.com/darthrichlius/flexauthapi",
