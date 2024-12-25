@@ -10,29 +10,29 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Easy to Use",
+    title: "Secure by Design",
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Complies with <b>IETF RFC</b> standards and protects against common threats and{" "}
+        <b>OWASP Top 10</b> vulnerabilities
       </>
     ),
   },
   {
-    title: "Focus on What Matters",
+    title: "Modern Authentication",
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Supports the latest authentication standards, including <b>OAuth 2.0</b>
+        , <b>SSO</b>, <b>MFA</b>, and <b>WebAuthn</b>.
       </>
     ),
   },
   {
-    title: "Powered by React",
+    title: "Developer-Friendly",
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Design for the best experience, FlexAuthApi is effortless to configure,
+        built for developers, and <b>API-first</b>
       </>
     ),
   },
