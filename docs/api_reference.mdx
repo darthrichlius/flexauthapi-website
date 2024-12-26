@@ -27,8 +27,7 @@ This document is meant to provide clear and comprehensive information and detail
     ...(endpoint.details.parameters?.query || []),
     ...(endpoint.details.parameters?.body || []),
   ]}
-  successResponseCode={endpoint.details.success.map((s) => s.code)}
-  successResponseBody={endpoint.details.success[0]?.body || ""}
+  successResponses={endpoint.details.success}
   errors={endpoint.details.errors.map((error) => ({
     code: error.code,
     title: error.title || "",

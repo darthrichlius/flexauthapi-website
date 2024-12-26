@@ -1,7 +1,7 @@
 // src/components/EndpointDetails.tsx
 import React from "react";
 import ReactJson from "@microlink/react-json-view";
-import DetailsTable from "./EndpointDetailsTable";
+import DetailsTable, { type TableRow } from "./EndpointDetailsTable";
 import styles from "./styles.module.css";
 import EndpointDetailsParameterTable from "./EndpointDetailsParameterTable";
 import EndpointDetailsErrorTable from "./EndpointDetailsErrorTable";
@@ -21,8 +21,10 @@ interface EndpointDetailsProps {
   endpoint: string;
   protected: boolean;
   parameters?: EndpointParameterProps[];
-  successResponseCode: number;
-  successResponseBody: string;
+  successResponses: {
+    code: number;
+    body: string;
+  }[];
   errors?: EndpointErrorProps[];
 }
 
@@ -32,26 +34,29 @@ const EndpointDetails = ({
   endpoint,
   protected: isProtected,
   parameters,
-  successResponseCode,
-  successResponseBody,
+  successResponses,
   errors,
 }: EndpointDetailsProps) => {
-  let _successResponseBody;
-  try {
-    if (typeof successResponseBody === "string" && successResponseBody.length)
-      _successResponseBody = (
-        <ReactJson
-          name={false}
-          src={JSON.parse(successResponseBody)}
-          theme="rjv-default"
-          collapsed={false}
-          displayObjectSize={false}
-        />
-      );
-    else _successResponseBody = "-";
-  } catch (ee) {
-    throw new Error("Malformed json");
-  }
+  const buildResponseBody = (body: string): React.ReactNode => {
+    let _successResponseBody;
+    try {
+      if (typeof body === "string" && body.length)
+        _successResponseBody = (
+          <ReactJson
+            name={false}
+            src={JSON.parse(body)}
+            theme="rjv-default"
+            collapsed={false}
+            displayObjectSize={false}
+          />
+        );
+      else _successResponseBody = "-";
+
+      return _successResponseBody;
+    } catch (ee) {
+      throw new Error("Malformed json");
+    }
+  };
 
   return (
     <div className={styles.endpointDetails}>
@@ -70,11 +75,20 @@ const EndpointDetails = ({
               "None"
             ),
           },
-          { key: "Success - Response Code", value: successResponseCode },
-          {
-            key: "Success - Response Body",
-            value: _successResponseBody,
-          },
+        ]}
+      />
+      <h5>Success</h5>
+      <DetailsTable
+        rows={successResponses.map(
+          (success): TableRow => ({
+            key: success.code.toString(),
+            value: buildResponseBody(success.body),
+          })
+        )}
+      />
+      <h5>Errors</h5>
+      <DetailsTable
+        rows={[
           {
             key: "Errors",
             value: errors ? (
