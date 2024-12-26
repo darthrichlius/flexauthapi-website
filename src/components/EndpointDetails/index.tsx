@@ -4,7 +4,9 @@ import ReactJson from "@microlink/react-json-view";
 import DetailsTable, { type TableRow } from "./EndpointDetailsTable";
 import styles from "./styles.module.css";
 import EndpointDetailsParameterTable from "./EndpointDetailsParameterTable";
-import EndpointDetailsErrorTable from "./EndpointDetailsErrorTable";
+import EndpointDetailsErrorTable, {
+  EndpointDetailsErrorNotDetails,
+} from "./EndpointDetailsErrorTable";
 
 export interface EndpointParameterProps {
   name: string;
@@ -69,7 +71,7 @@ const EndpointDetails = ({
     let httpCodeText;
     switch (httpCode) {
       case 400:
-        httpCodeText = "Bar Request";
+        httpCodeText = "Bad Request";
         break;
     }
 
@@ -88,14 +90,7 @@ const EndpointDetails = ({
     return {
       key: buildErrorGroupHeader(httpErrorCode),
       value: (
-        <>
-          {errors.map((errDetails) => (
-            <>
-              <p>{errDetails.message}</p>
-              {errDetails.information && <p>{errDetails.information}</p>}
-            </>
-          ))}
-        </>
+        <EndpointDetailsErrorTable httpCode={httpErrorCode} errors={errors} />
       ),
     };
   };
@@ -141,7 +136,7 @@ const EndpointDetails = ({
             ? buildErrorDetails(errorCode, _errors)
             : {
                 key: buildErrorGroupHeader(errorCode),
-                value: <p>No Description</p>,
+                value: <EndpointDetailsErrorNotDetails />,
               };
         })}
       />

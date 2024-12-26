@@ -1,17 +1,21 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-const EndpointDetailsError = ({ name, description }) => (
-  <p className={styles.endpointDetailsError}>
-    <code className={styles.endpointDetailsErrorName}>{name}</code>
-    <span className={styles.endpointDetailsErrorDesc}> {description}</span>
-  </p>
+export const EndpointDetailsErrorNotDetails = () => (
+  <p className={styles.endpointDetailsErrorNotDetails}>No more precision</p>
 );
 
-const EndpointDetailsErrorTable = ({ rows }) => (
+const EndpointDetailsError = ({ message, information }) => (
+  <div>
+    <p className={styles.endpointDetailsErrorMessage}>&gt; {message}</p>
+    <p className={styles.endpointDetailsErrorInformation}>{information}</p>
+  </div>
+);
+
+const EndpointDetailsErrorTable = ({ httpCode, errors }) => (
   <>
-    {rows.map((row, index) => (
-      <EndpointDetailsError {...row} />
+    {errors.map((errDetails, index) => (
+      <EndpointDetailsError {...errDetails} />
     ))}
   </>
 );

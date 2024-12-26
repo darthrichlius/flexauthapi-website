@@ -1,8 +1,14 @@
-.endpointDetailsError {
-  display: flex;
-  gap: calc(8px / 2);
-  margin-bottom: 8px !important;
+.endpointDetailsErrorMessage {
+  font-size: 14px;
+  font-weight: bold;
 }
-.endpointDetailsErrorName {
-  padding: 0px 4px;
+
+.endpointDetailsErrorInformation {
+  padding-left: calc(8px / 2);
+  font-size: 14px;
+}
+
+.endpointDetailsErrorNotDetails {
+  font-size: 14px;
+  font-style: italic;
 }
