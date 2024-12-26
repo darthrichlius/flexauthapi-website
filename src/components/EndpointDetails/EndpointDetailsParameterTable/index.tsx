@@ -8,11 +8,14 @@ interface EndpointDetailsParameterTablePros {
 
 const EndpointDetailsParameter = ({ name, isRequired, description, type }) => (
   <p className={styles.endpointDetailsParameter}>
-    <code className={styles.endpointDetailsParameterName}>{name}</code>
+    <code className={styles.endpointDetailsParameterName}>{name}</code>{" "}
     <span>
       ({type}, {isRequired ? "required" : "optional"})
     </span>
-    <span className={styles.endpointDetailsParameterDesc}>- {description}</span>
+    <span className={styles.endpointDetailsParameterDesc}>
+      {" "}
+      - {description}
+    </span>
   </p>
 );
 
