@@ -28,10 +28,7 @@ This document is meant to provide clear and comprehensive information and detail
     ...(endpoint.details.parameters?.body || []),
   ]}
   successResponses={endpoint.details.success}
-  errors={endpoint.details.errors.map((error) => ({
-    code: error.code,
-    title: error.title || "",
-  }))}
+  errors={endpoint.details.errors}
 />
 ))}
 
@@ -56,10 +53,7 @@ There are 2 approaches for authentication, standard credentials authentication a
     ...(endpoint.details.parameters?.body || []),
   ]}
   successResponses={endpoint.details.success}
-  errors={endpoint.details.errors.map((error) => ({
-    code: error.code,
-    title: error.title || "",
-  }))}
+  errors={endpoint.details.errors}
 />
 ))}
 
@@ -87,10 +81,7 @@ Authenticating with MFA is a 2 steps process. If you want more information about
     ...(endpoint.details.parameters?.body || []),
   ]}
   successResponses={endpoint.details.success}
-  errors={endpoint.details.errors.map((error) => ({
-    code: error.code,
-    title: error.title || "",
-  }))}
+  errors={endpoint.details.errors}
 />
 ))}
 
@@ -111,10 +102,7 @@ Authenticating with MFA is a 2 steps process. If you want more information about
     ...(endpoint.details.parameters?.body || []),
   ]}
   successResponses={endpoint.details.success}
-  errors={endpoint.details.errors.map((error) => ({
-    code: error.code,
-    title: error.title || "",
-  }))}
+  errors={endpoint.details.errors}
 />
 ))}
 
@@ -135,10 +123,7 @@ Authenticating with MFA is a 2 steps process. If you want more information about
     ...(endpoint.details.parameters?.body || []),
   ]}
   successResponses={endpoint.details.success}
-  errors={endpoint.details.errors.map((error) => ({
-    code: error.code,
-    title: error.title || "",
-  }))}
+  errors={endpoint.details.errors}
 />
 ))}
 
@@ -159,9 +144,6 @@ Authenticating with MFA is a 2 steps process. If you want more information about
     ...(endpoint.details.parameters?.body || []),
   ]}
   successResponses={endpoint.details.success}
-  errors={endpoint.details.errors.map((error) => ({
-    code: error.code,
-    title: error.title || "",
-  }))}
+  errors={endpoint.details.errors}
 />
 ))}

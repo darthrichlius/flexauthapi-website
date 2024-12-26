@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./styles.module.css";
 
 export interface TableRow {
-  key: string;
+  key: React.ReactNode;
   value: React.ReactNode;
 }
 

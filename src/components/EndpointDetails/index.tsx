@@ -13,7 +13,10 @@ export interface EndpointParameterProps {
   description: string;
 }
 
-export interface EndpointErrorProps {}
+export interface EndpointErrorProps {
+  message: string;
+  information: string;
+}
 
 interface EndpointDetailsProps {
   title: string;
@@ -25,7 +28,11 @@ interface EndpointDetailsProps {
     code: number;
     body: string;
   }[];
-  errors?: EndpointErrorProps[];
+  errors?: [
+    {
+      [k: number]: EndpointErrorProps[];
+    }
+  ];
 }
 
 const EndpointDetails = ({
@@ -58,6 +65,41 @@ const EndpointDetails = ({
     }
   };
 
+  const buildErrorGroupHeader = (httpCode) => {
+    let httpCodeText;
+    switch (httpCode) {
+      case 400:
+        httpCodeText = "Bar Request";
+        break;
+    }
+
+    return (
+      <>
+        <p>{httpCode}</p>
+        <p>{httpCodeText}</p>
+      </>
+    );
+  };
+
+  const buildErrorDetails = (
+    httpErrorCode: string,
+    errors: EndpointErrorProps[]
+  ): { key: React.ReactNode; value: React.ReactNode } => {
+    return {
+      key: buildErrorGroupHeader(httpErrorCode),
+      value: (
+        <>
+          {errors.map((errDetails) => (
+            <>
+              <p>{errDetails.message}</p>
+              {errDetails.information && <p>{errDetails.information}</p>}
+            </>
+          ))}
+        </>
+      ),
+    };
+  };
+
   return (
     <div className={styles.endpointDetails}>
       <h4>{title}</h4>
@@ -88,16 +130,16 @@ const EndpointDetails = ({
       />
       <h5>Errors</h5>
       <DetailsTable
-        rows={[
-          {
-            key: "Errors",
-            value: errors ? (
-              <EndpointDetailsErrorTable rows={errors} />
-            ) : (
-              "None"
-            ),
-          },
-        ]}
+        rows={Object.keys(errors).map((errorCode) => {
+          const _errors = errors[errorCode];
+
+          return _errors && Array.isArray(_errors)
+            ? buildErrorDetails(errorCode, _errors)
+            : {
+                key: buildErrorGroupHeader(errorCode),
+                value: <p>No Description</p>,
+              };
+        })}
       />
     </div>
   );
