@@ -34,3 +34,134 @@ This document is meant to provide clear and comprehensive information and detail
   }))}
 />
 ))}
+
+### Authentication Management
+
+There are 2 approaches for authentication, standard credentials authentication and with MFA authentication.
+
+#### Credentials
+
+{Object.entries(endpoints)
+.filter(([_, endpoint]) => endpoint.domain === "auth_management_credentials")
+.map(([key, endpoint]) => (
+
+<EndpointDetails
+  key={key}
+  title={`${endpoint.method} ${endpoint.details.endpoint} - ${endpoint.title}`}
+  description={endpoint.description || ""}
+  endpoint={endpoint.details.endpoint}
+  protected={endpoint.details.protected}
+  parameters={[
+    ...(endpoint.details.parameters?.query || []),
+    ...(endpoint.details.parameters?.body || []),
+  ]}
+  successResponses={endpoint.details.success}
+  errors={endpoint.details.errors.map((error) => ({
+    code: error.code,
+    title: error.title || "",
+  }))}
+/>
+))}
+
+#### Credentials (with MFA)
+
+Authenticating with MFA is a 2 steps process. If you want more information about this topic, refers to the workflow reference.
+
+1. <b>Step1</b>, is a "security challenge” step. When successful, provide the
+   user with a <code>mfaAccessToken</code>
+2. <b>Step2</b>, is a "identity challenge” step. When successful, provides the
+   final <code>accessToken</code> JWT needed resource access operations
+
+{Object.entries(endpoints)
+.filter(([_, endpoint]) => endpoint.domain === "auth_management_credentials_with_mfa_enabled")
+.map(([key, endpoint]) => (
+
+<EndpointDetails
+  key={key}
+  title={`${endpoint.method} ${endpoint.details.endpoint} - ${endpoint.title}`}
+  description={endpoint.description || ""}
+  endpoint={endpoint.details.endpoint}
+  protected={endpoint.details.protected}
+  parameters={[
+    ...(endpoint.details.parameters?.query || []),
+    ...(endpoint.details.parameters?.body || []),
+  ]}
+  successResponses={endpoint.details.success}
+  errors={endpoint.details.errors.map((error) => ({
+    code: error.code,
+    title: error.title || "",
+  }))}
+/>
+))}
+
+#### MFA token verification
+
+{Object.entries(endpoints)
+.filter(([_, endpoint]) => endpoint.domain === "auth_management_mfa_token")
+.map(([key, endpoint]) => (
+
+<EndpointDetails
+  key={key}
+  title={`${endpoint.method} ${endpoint.details.endpoint} - ${endpoint.title}`}
+  description={endpoint.description || ""}
+  endpoint={endpoint.details.endpoint}
+  protected={endpoint.details.protected}
+  parameters={[
+    ...(endpoint.details.parameters?.query || []),
+    ...(endpoint.details.parameters?.body || []),
+  ]}
+  successResponses={endpoint.details.success}
+  errors={endpoint.details.errors.map((error) => ({
+    code: error.code,
+    title: error.title || "",
+  }))}
+/>
+))}
+
+### Authentication Management
+
+{Object.entries(endpoints)
+.filter(([_, endpoint]) => endpoint.domain === "mfa_management")
+.map(([key, endpoint]) => (
+
+<EndpointDetails
+  key={key}
+  title={`${endpoint.method} ${endpoint.details.endpoint} - ${endpoint.title}`}
+  description={endpoint.description || ""}
+  endpoint={endpoint.details.endpoint}
+  protected={endpoint.details.protected}
+  parameters={[
+    ...(endpoint.details.parameters?.query || []),
+    ...(endpoint.details.parameters?.body || []),
+  ]}
+  successResponses={endpoint.details.success}
+  errors={endpoint.details.errors.map((error) => ({
+    code: error.code,
+    title: error.title || "",
+  }))}
+/>
+))}
+
+### Token Management
+
+{Object.entries(endpoints)
+.filter(([_, endpoint]) => endpoint.domain === "token_management")
+.map(([key, endpoint]) => (
+
+<EndpointDetails
+  key={key}
+  title={`${endpoint.method} ${endpoint.details.endpoint} - ${endpoint.title}`}
+  description={endpoint.description || ""}
+  endpoint={endpoint.details.endpoint}
+  protected={endpoint.details.protected}
+  parameters={[
+    ...(endpoint.details.parameters?.query || []),
+    ...(endpoint.details.parameters?.body || []),
+  ]}
+  successResponses={endpoint.details.success}
+  errors={endpoint.details.errors.map((error) => ({
+    code: error.code,
+    title: error.title || "",
+  }))}
+/>
+))}
