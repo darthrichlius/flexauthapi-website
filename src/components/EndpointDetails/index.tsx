@@ -102,7 +102,11 @@ const EndpointDetails = ({
 
   return (
     <div className={styles.endpointDetails}>
-      <h4>{title}</h4>
+      <h4
+        dangerouslySetInnerHTML={{
+          __html: title,
+        }}
+      />
       {description && <p>{description}</p>}
 
       <DetailsTable
