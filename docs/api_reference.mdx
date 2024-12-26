@@ -34,7 +34,7 @@ This document is meant to provide clear and comprehensive information and detail
 
 ### Authentication Management
 
-There are 2 approaches for authentication, standard credentials authentication and with MFA authentication.
+There are 2 approaches for authentication, standard credentials authentication and with 2FA authentication.
 
 #### Credentials
 
@@ -57,9 +57,9 @@ There are 2 approaches for authentication, standard credentials authentication a
 />
 ))}
 
-#### Credentials (with MFA)
+#### Credentials (with 2FA)
 
-Authenticating with MFA is a 2 steps process. If you want more information about this topic, refers to the workflow reference.
+Authenticating with 2FA is a 2 steps process. If you want more information about this topic, refers to the workflow reference.
 
 1. <b>Step1</b>, is a "security challenge” step. When successful, provide the
    user with a <code>mfaAccessToken</code>
@@ -85,7 +85,7 @@ Authenticating with MFA is a 2 steps process. If you want more information about
 />
 ))}
 
-#### MFA token verification
+#### 2FA token verification
 
 {Object.entries(endpoints)
 .filter(([_, endpoint]) => endpoint.domain === "auth_management_mfa_token")

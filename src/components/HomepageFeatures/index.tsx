@@ -13,8 +13,8 @@ const FeatureList: FeatureItem[] = [
     title: "Secure by Design",
     description: (
       <>
-        Complies with <b>IETF RFC</b> standards and protects against common threats and{" "}
-        <b>OWASP Top 10</b> vulnerabilities
+        Complies with <b>IETF RFC</b> standards and protects against common
+        threats and <b>OWASP Top 10</b> vulnerabilities
       </>
     ),
   },
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Supports the latest authentication standards, including <b>OAuth 2.0</b>
-        , <b>SSO</b>, <b>MFA</b>, and <b>WebAuthn</b>.
+        , <b>SSO</b>, <b>2FA</b>, and <b>WebAuthn</b>.
       </>
     ),
   },
