@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 import EndpointDetails from "@site/src/components/EndpointDetails";
+import endpoints from "@site/docs/content/endpoints.yaml";
 
 # API Reference
 
@@ -12,73 +13,25 @@ This document is meant to provide clear and comprehensive information and detail
 
 ### User Management
 
-<EndpointDetails
-  title="GET /users - Get the current user data"
-  description="Get the current user information. "
-  endpoint="/users/me"
-  protected={true}
-  parameters={[
-    {
-      name: "id",
-      isRequired: true,
-      type: "string",
-      description: "lorem ipsum",
-    },
-    {
-      name: "name",
-      isRequired: false,
-      type: "string",
-      description: "lorem ipsum",
-    },
-  ]}
-  successResponseCode={200}
-  successResponseBody={{
-    id: "123",
-    name: "John Doe",
-    email: "john.doe@example.com",
-  }}
-  errors={[
-    {
-      name: "400 Bad Request",
-    },
-    {
-      name: "401 Unauthorized",
-      description: "Bad credentials",
-    },
-  ]}
-/>
+{Object.entries(endpoints)
+.filter(([_, endpoint]) => endpoint.domain === "user_management")
+.map(([key, endpoint]) => (
 
 <EndpointDetails
-  title="GET /users - Get user list"
-  endpoint="/users"
-  protected={true}
+  key={key}
+  title={`${endpoint.method} ${endpoint.details.endpoint} - ${endpoint.title}`}
+  description={endpoint.description || ""}
+  endpoint={endpoint.details.endpoint}
+  protected={endpoint.details.protected}
   parameters={[
-    {
-      name: "id",
-      isRequired: true,
-      type: "string",
-      description: "lorem ipsum",
-    },
-    {
-      name: "name",
-      isRequired: false,
-      type: "string",
-      description: "lorem ipsum",
-    },
+    ...(endpoint.details.parameters?.query || []),
+    ...(endpoint.details.parameters?.body || []),
   ]}
-  successResponseCode={200}
-  successResponseBody={{
-    id: "123",
-    name: "John Doe",
-    email: "john.doe@example.com",
-  }}
-  errors={[
-    {
-      name: "400 Bad Request",
-    },
-    {
-      name: "401 Unauthorized",
-      description: "Bad credentials",
-    },
-  ]}
+  successResponseCode={endpoint.details.success.map((s) => s.code)}
+  successResponseBody={endpoint.details.success[0]?.body || ""}
+  errors={endpoint.details.errors.map((error) => ({
+    code: error.code,
+    title: error.title || "",
+  }))}
 />
+))}
