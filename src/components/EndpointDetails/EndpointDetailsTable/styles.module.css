@@ -1,19 +1,29 @@
 .detailsTable {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Ensures table cells follow the defined widths */
   margin-top: 1rem;
 }
 
-.detailsTable th {
-  text-align: left;
+.detailsTable tbody {
+  width: 100%;
+}
+
+.detailsTable th,
+.detailsTable td {
   padding: 0.5rem;
-  background: #f4f4f4;
   border: 1px solid #e0e0e0;
+  text-align: left;
+  color: #333333;
+  vertical-align: top; /* Aligns content at the top */
+}
+
+.detailsTable th {
+  background: #f4f4f4;
   font-weight: bold;
 }
 
 .detailsTable td {
-  padding: 0.5rem;
-  border: 1px solid #e0e0e0;
-  color: #333333;
+  white-space: normal; /* Allows wrapping of long content in the right column */
+  word-wrap: break-word; /* Prevents text from overflowing */
 }

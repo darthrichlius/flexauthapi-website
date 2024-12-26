@@ -13,6 +13,10 @@ interface DetailsTableProps {
 
 const DetailsTable = ({ rows }: DetailsTableProps) => (
   <table className={styles.detailsTable}>
+    <colgroup>
+      <col style={{ width: "175px" }} /> {/* Fixed width for the left column */}
+      <col style={{ width: "80%" }} />{" "}
+    </colgroup>
     <tbody>
       {rows.map((row, index) => (
         <tr key={index}>
