@@ -1,5 +1,6 @@
 // src/components/EndpointDetails.tsx
 import React from "react";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import ReactJson from "@microlink/react-json-view";
 import DetailsTable, { type TableRow } from "./EndpointDetailsTable";
 import styles from "./styles.module.css";
@@ -51,13 +52,17 @@ const EndpointDetails = ({
     try {
       if (typeof body === "string" && body.length)
         _successResponseBody = (
-          <ReactJson
-            name={false}
-            src={JSON.parse(body)}
-            theme="rjv-default"
-            collapsed={false}
-            displayObjectSize={false}
-          />
+          <BrowserOnly>
+            {() => (
+              <ReactJson
+                name={false}
+                src={JSON.parse(body)}
+                theme="rjv-default"
+                collapsed={false}
+                displayObjectSize={false}
+              />
+            )}
+          </BrowserOnly>
         );
       else _successResponseBody = "-";
 
