@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "rm -rf docs/content && git clone --depth 1 --filter=blob:none --sparse https://git:$GITHUB_DOCS_REPO_TOKEN@github.com/$GITHUB_DOCS_REPO_OWNER/$GITHUB_DOCS_REPO_NAME.git temp_docs && cd temp_docs && git sparse-checkout set docs/content && cd .. && mv temp_docs/docs/content docs/ && rm -rf temp_docs && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
