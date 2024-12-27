@@ -1,7 +1,6 @@
 // src/components/EndpointDetails.tsx
 import React from "react";
 import BrowserOnly from "@docusaurus/BrowserOnly";
-import ReactJson from "@microlink/react-json-view";
 import DetailsTable, { type TableRow } from "./EndpointDetailsTable";
 import styles from "./styles.module.css";
 import EndpointDetailsParameterTable from "./EndpointDetailsParameterTable";
@@ -47,7 +46,9 @@ const EndpointDetails = ({
   successResponses,
   errors,
 }: EndpointDetailsProps) => {
-  const buildResponseBody = (body: string): React.ReactNode => {
+  const renderJsonBody = (body: string): React.ReactNode => {
+    const ReactJson = require("@microlink/react-json-view").default;
+
     let _successResponseBody;
     try {
       if (typeof body === "string" && body.length)
@@ -128,7 +129,10 @@ const EndpointDetails = ({
         rows={successResponses.map(
           (success): TableRow => ({
             key: success.code.toString(),
-            value: buildResponseBody(success.body),
+            value:
+              typeof window !== "undefined"
+                ? renderJsonBody(success.body)
+                : "",
           })
         )}
       />
